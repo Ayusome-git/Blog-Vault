@@ -1,0 +1,15 @@
+import express from "express";
+import cors from "cors";
+
+const app = express();
+app.use(express.json());
+
+
+app.get("/",(req,res)=>{
+    res.json({
+        message:"server running"
+    })
+})
+
+
+app.listen(3000);
