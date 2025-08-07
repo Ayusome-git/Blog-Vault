@@ -1,10 +1,7 @@
 import express from "express";
-import cors from "cors";
-import { PrismaClient } from "@prisma/client";
+import userRoutes from './routes/user'
+import blogRoutes from './routes/blog'
 const app = express();
-app.use(express.json());
-
-const client = new PrismaClient();
 
 app.get("/",(req,res)=>{
     res.json({
@@ -12,9 +9,9 @@ app.get("/",(req,res)=>{
     })
 })
 
-app.get("/user/signup",(req,res)=>{
-    const email = req.body.email;
-    const password = req.body.password;
+app.use(express.json());
 
-})
+app.use('/user',userRoutes);
+app.use('/blog',blogRoutes)
+
 app.listen(3000);
