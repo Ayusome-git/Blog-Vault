@@ -13,6 +13,7 @@ import { Label } from "../components/ui/label"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react"
 import { signup } from "./signup"
+import { login } from "./login"
 
 interface formProps{
   variant: "login" | "signup",
@@ -68,7 +69,7 @@ export function LoginForm(props:formProps) {
                   <Button onClick={async () => {
                     setLoading(true);
                     try {
-                      await signup(email, password);
+                      await login(email, password);
                     } finally {
                       setLoading(false);
                     }

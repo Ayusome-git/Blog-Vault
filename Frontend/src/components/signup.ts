@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BACKEND_URL } from "../config";
 interface SignupResponse {
     token: string;
 }
@@ -6,7 +7,7 @@ interface SignupResponse {
 export async function signup(email: string, password: string) {
 
     try{
-        const response = await axios.post<SignupResponse>("http://localhost:3000/user/signup", {
+        const response = await axios.post<SignupResponse>(`${BACKEND_URL}/user/signup`, {
         email,
         password
     })
