@@ -8,13 +8,13 @@ const client = new PrismaClient();
 
 app.post("/",middleware,async(req,res)=>{
     //@ts-ignore
-    const id = req.id;
+    const authorid = req.id;
     const title = req.body.title;
     const content= req.body.content;
     try{
         const blog= await client.blog.create({
         data:{
-            authorId:id,
+            authorId:authorid,
             title:title,
             content:content
         }
@@ -54,7 +54,20 @@ app.put("/",middleware,async(req,res)=>{
 app.get('/bulk',middleware,async(req,res)=>{
 
     try{
-        const blogs = await client.blog.findMany();
+        const blogs = await client.blog.findMany(({
+            select:{
+                content:true,
+                title:true,
+                id:true,
+                published:true,
+                author:{
+                    select:{
+                        name:true
+                    }
+                }
+
+            }
+        }));
         res.status(200).json({blogs});
     }catch(e){
         res.status(411).json({
@@ -64,12 +77,21 @@ app.get('/bulk',middleware,async(req,res)=>{
 })
 app.get("/:id",middleware,async(req,res)=>{
     const id = req.params.id;
-    const title =req.body.title;
-    const content=req.body.content;
     try{
         const blog= await client.blog.findFirst({
         where:{
             id:id as string
+        },
+        select:{
+            content:true,
+                title:true,
+                id:true,
+                published:true,
+                author:{
+                    select:{
+                        name:true
+                    }
+                }
         }
     })
     res.status(201).json({

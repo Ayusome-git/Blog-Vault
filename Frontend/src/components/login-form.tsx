@@ -22,6 +22,7 @@ export function LoginForm(props:formProps) {
   const [loading,setLoading] = useState(false);
   const [email,setEmail] =useState("");
   const [password,setPassword] =useState("");
+  const [name,setName] =useState("");
   const navigate = useNavigate();
   
   return (
@@ -48,11 +49,17 @@ export function LoginForm(props:formProps) {
           <div>
             <div className="flex flex-col gap-6">
               <div className="grid gap-3">
+                <div className="flex items-center">
+                  <Label htmlFor="Name">Name</Label>
+                </div>
+                <Input id="text" type="text" placeholder="Enter your name" onChange={e =>setName(e.target.value)} required />
+              </div>
+              <div className="grid gap-3">
                 <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="abc@example.com"
+                  placeholder="ayush@example.com"
                   onChange={e => setEmail(e.target.value)}
                   required
                 />
@@ -60,7 +67,6 @@ export function LoginForm(props:formProps) {
               <div className="grid gap-3">
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
-
                 </div>
                 <Input id="password" type="password" onChange={e =>setPassword(e.target.value)} required />
               </div>
@@ -86,7 +92,7 @@ export function LoginForm(props:formProps) {
                   onClick={async () => {
                     setLoading(true);
                     try {
-                      await signup(email, password);
+                      await signup(name,email, password);
                     } finally {
                       setLoading(false);
                     }

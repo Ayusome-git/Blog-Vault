@@ -24,10 +24,11 @@ app.post("/signup",async(req,res)=>{
     try{
         const user = await client.user.create({
             data:{
+                name: body.name,
                 email: body.email,
                 password:body.password
             }
-        });
+        }); 
         const token = jwt.sign({
             id: user.id
         }, process.env.JWT_SECRET as string);

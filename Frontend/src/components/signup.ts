@@ -1,13 +1,14 @@
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import { useNavigate } from "react-router-dom";
 interface SignupResponse {
     token: string;
 }
 
-export async function signup(email: string, password: string) {
-
+export async function signup(name:string,email: string, password: string) {
     try{
         const response = await axios.post<SignupResponse>(`${BACKEND_URL}/user/signup`, {
+        name,
         email,
         password
     })
