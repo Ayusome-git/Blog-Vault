@@ -5,6 +5,7 @@ import { ThemeProvider } from "./components/theme-provider"
 import { Login } from './pages/Login'
 import { Blogs } from './pages/Blogs'
 import { Blog } from './pages/Blog'
+import { CreateBlog } from './pages/CreateBlog'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/blogs' element={<Blogs/>}/>
           <Route path='/blog/:id' element={<Blog/>}/>
+          <Route path='/createblog' element={<CreateBlog/>}/>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

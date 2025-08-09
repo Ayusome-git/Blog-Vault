@@ -14,16 +14,18 @@ export function Blogs(){
         <AppBar/>
     <div className="flex justify-center">
     <div>
-        {blogs.map(blog=> 
-            <BlogCard
+        {[...blogs].sort((a, b) => new Date(b.published).getTime() - new Date(a.published).getTime())
+        .map(blog => (
+        <BlogCard
+            key={blog.id} 
             id={blog.id}
             name={blog.author.name}
             title={blog.title}
             content={blog.content}
-            publishedDate={blog.published.slice(0,10).split('-').reverse().join('-')}
-            avatar={""}/>
-            
-        )}
+            publishedDate={blog.published.slice(0, 10).split('-').reverse().join('-')}
+            avatar=""
+        />
+))}
     </div>
     </div>
     </div>

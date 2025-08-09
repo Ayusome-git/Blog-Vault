@@ -19,7 +19,7 @@ export const useBlog=({id}:{id:string})=>{
 
     useEffect(()=>{
         try{
-             axios.get<{blog:Blogs}>(`${BACKEND_URL}/blog/${id}`,{
+            axios.get<{blog:Blogs}>(`${BACKEND_URL}/blog/${id}`,{
             headers:{
                 authorization:localStorage.getItem("token")
             }
@@ -31,7 +31,7 @@ export const useBlog=({id}:{id:string})=>{
             setLoading(false);
         }
        
-    },[])
+    },[blog])
 
     return{
         loading,

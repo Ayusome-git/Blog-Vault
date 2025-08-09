@@ -48,12 +48,12 @@ export function LoginForm(props:formProps) {
         <CardContent>
           <div>
             <div className="flex flex-col gap-6">
-              <div className="grid gap-3">
+              {props.variant==="signup" && <div className="grid gap-3">
                 <div className="flex items-center">
                   <Label htmlFor="Name">Name</Label>
                 </div>
                 <Input id="text" type="text" placeholder="Enter your name" onChange={e =>setName(e.target.value)} required />
-              </div>
+              </div>}
               <div className="grid gap-3">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -75,7 +75,8 @@ export function LoginForm(props:formProps) {
                   <Button onClick={async () => {
                     setLoading(true);
                     try {
-                      await login(email, password);
+                      const success=await login(email, password);
+                      if(success) navigate("/blogs")
                     } finally {
                       setLoading(false);
                     }
@@ -92,7 +93,10 @@ export function LoginForm(props:formProps) {
                   onClick={async () => {
                     setLoading(true);
                     try {
-                      await signup(name,email, password);
+                     const success= await signup(name,email, password);
+                     if(success){
+                      navigate("/blogs")
+                     }
                     } finally {
                       setLoading(false);
                     }

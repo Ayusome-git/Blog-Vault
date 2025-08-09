@@ -10,13 +10,18 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu"
+import { WriteBlog } from "./ui/writeBlog";
 
 
-export function AppBar(){
+export function AppBar({createBlogpage}:{createBlogpage?:string}){
     const navigate = useNavigate();
     return <div className="border-b flex justify-between px-5 py-2 items-center mb-4">
+        <div className="">
         <div onClick={()=>navigate("/blogs")} className="cursor-pointer">Blog Vault</div>
+
+        </div>
         <div className="flex">
+        {!(createBlogpage==="true") && <WriteBlog onclick={()=>navigate("/createblog")}/>}
         <ModeToggle/>
         <DropdownMenu >
             <DropdownMenuTrigger className="cursor-pointer">
