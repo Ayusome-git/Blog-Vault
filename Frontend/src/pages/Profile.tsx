@@ -5,6 +5,7 @@ import { EditButton } from "../components/EditDetails"
 import { useUserDetails } from "../hooks/useUserDetails"
 import { useEffect, useState } from "react"
 import { Myposts } from "../components/Myposts"
+import { FullBlogSkeleton } from "../components/skeletons/BlogSkeleton"
 
 
 
@@ -16,11 +17,13 @@ export function Profile(){
         refresh();
     },[open])
     
-    
-    if(!userDetail){
-        return <div>no user</div>
-    }
-   
+   if(loading){
+    return(<div>
+        <AppBar/>
+        <div><FullBlogSkeleton/></div>
+         </div>
+    )
+   }
     return (
         <div>
             <AppBar/>
@@ -32,7 +35,11 @@ export function Profile(){
                 <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
                 <div className="text-2xl ml-3">{userDetail?.name}</div>
-                <EditButton onclick={()=>{setOpen(!open)}} email={userDetail.email } name={userDetail.name}/>
+                <EditButton
+                    onclick={() => { setOpen(!open) }}
+                    email={userDetail?.email ?? ""}
+                    name={userDetail?.name ?? ""}
+                />
                 </div>
                 <div>My Posts</div>
                 <div>
