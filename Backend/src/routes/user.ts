@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import { Router } from "express";
 import { signinInput } from "../zod";
 import { email } from "zod";
+import { middleware } from "../middleware";
 
 const client = new PrismaClient();
 
@@ -58,9 +59,70 @@ app.post("/signin",async(req,res)=>{
 
     }catch(e){
         res.status(411).json("invalid");
-    }
-    
+    }})
 
-})
+    app.get("/me",middleware,async(req,res)=>{
+        //@ts-ignore
+        const id=req.id
+        try{
+            const response= await client.user.findFirst({
+                where:{
+                    id:id
+                },
+                select:{
+                    name:true,
+                    email:true,
+                    posts:{
+                        select:{
+                            id:true,
+                            title:true,
+                            content:true
+                        }
+                    }
+                    
+                }
+                
+            })
+            res.status(200).json(response)
+        }catch(e){
+
+        }
+    })
+
+
+    app.put("/me",middleware,async(req,res)=>{
+        //@ts-ignore
+        const id=req.id
+        try{
+            const updatedUser=await client.user.update({
+                where:{
+                    id:id
+                },
+                data:{
+                    name:req.body.name
+                },
+                include:{
+                    posts:{
+                        select:{
+                            id:true,
+                            title:true,
+                            content:true
+                        }
+                    }
+                }
+            })
+            res.json({
+                name:updatedUser.name,
+                email:updatedUser.email,
+                posts:updatedUser.posts
+            })
+
+        }catch(e){
+
+        }
+    })
+
+
+
 
 export default app;

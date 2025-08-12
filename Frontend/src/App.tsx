@@ -6,6 +6,7 @@ import { Login } from './pages/Login'
 import { Blogs } from './pages/Blogs'
 import { Blog } from './pages/Blog'
 import { CreateBlog } from './pages/CreateBlog'
+import { Profile } from './pages/Profile'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Route path='/blogs' element={<Blogs/>}/>
           <Route path='/blog/:id' element={<Blog/>}/>
           <Route path='/createblog' element={<CreateBlog/>}/>
+          <Route path='/me' element={<Profile/>}/>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

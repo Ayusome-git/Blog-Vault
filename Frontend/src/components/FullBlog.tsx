@@ -1,5 +1,4 @@
 import type { Blogs } from "../hooks/useBlogs"
-import { AppBar } from "./Appbar"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
 interface blogprops{
@@ -13,7 +12,6 @@ interface blogprops{
 
 export function FullBlog(props:blogprops){
     return <div>
-        <AppBar/>
     <div className="grid grid-cols-5">
         <div className="col-start-2 col-span-3">
             <div className="text-4xl font-bold">{props.title}</div>

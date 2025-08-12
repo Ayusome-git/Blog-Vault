@@ -1,18 +1,15 @@
 import { AppBar } from "../components/Appbar"
 import { BlogCard } from "../components/BlogCard"
+import { BlogSkeletonList } from "../components/skeletons/BlogsSkeleton";
 import { useBlogs } from "../hooks/useBlogs"
-
-
-
 
 export function Blogs(){
     const{ loading , blogs } = useBlogs();
-    if(loading){
-        return <div>loading</div>
-    }
     return <div>
         <AppBar/>
     <div className="flex justify-center">
+        <div className="w-full max-w-4xl">
+    {loading && <BlogSkeletonList/>}
     <div>
         {[...blogs].sort((a, b) => new Date(b.published).getTime() - new Date(a.published).getTime())
         .map(blog => (
@@ -26,6 +23,7 @@ export function Blogs(){
             avatar=""
         />
 ))}
+    </div>
     </div>
     </div>
     </div>

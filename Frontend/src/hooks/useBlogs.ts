@@ -31,7 +31,7 @@ export const useBlog=({id}:{id:string})=>{
             setLoading(false);
         }
        
-    },[blog])
+    },[])
 
     return{
         loading,
