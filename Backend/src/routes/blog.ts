@@ -32,22 +32,23 @@ app.put("/",middleware,async(req,res)=>{
     const id = req.body.id;
     const title =req.body.title;
     const content=req.body.content;
-    try{
-        const blog= await client.blog.update({
-        where:{
-            id:id
-        },
-        data:{
-            title:title,
-            content:content
-        }
-    })
-    res.status(201).json({
-        message:"content updated successfully"
-    })
-    }catch(e){
+    try {
+        await client.blog.update({
+            where: {
+                id: id
+            },
+            data: {
+                title: title,
+                content: content,
+                published: new Date()
+            }
+        })
+        res.status(201).json({
+            message: "content updated successfully"
+        })
+    } catch (e) {
         res.status(400).json({
-            message:"failed to update content"
+            message: "failed to update content"
         })
     }
 })

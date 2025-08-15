@@ -7,12 +7,16 @@ import { useEffect, useState } from "react"
 import { Myposts } from "../components/Myposts"
 import { FullBlogSkeleton } from "../components/skeletons/BlogSkeleton"
 
+import {CheckCircle2Icon} from "lucide-react"
 
+import {
+  Alert,
+  AlertTitle,
+} from "../components/ui/alert"
 
 export function Profile(){
     const {loading, blog, userDetail,refresh} = useUserDetails()
     const[open,setOpen] =useState(false);
-
     useEffect(()=>{
         refresh();
     },[open])

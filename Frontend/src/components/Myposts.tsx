@@ -12,6 +12,8 @@ export function Myposts(props:Blog){
         <div className="break-words text-l font-light pb-4">
             {props.content}
         </div>
+        <Link to={`/updateBlog/${props.id}`}><div>update</div></Link>
+        
     </div>
     </div>
     </Link>)

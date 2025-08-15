@@ -1,4 +1,4 @@
-import type { Blogs } from "../hooks/useBlogs"
+
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 
 interface blogprops{
@@ -28,7 +28,7 @@ export function FullBlog(props:blogprops){
                     <div>{`${Math.ceil(props.content.length/300)} Minute(s) read`}</div>
                     <div>{props.publishedDate}</div>
                 </div>
-            <div className="text-xl pt-4 leading-loose tracking-wide border-t">
+            <div className="text-xl pt-4 leading-loose tracking-wide border-t whitespace-pre-wrap">
                 {props.content}
             </div>
         </div>

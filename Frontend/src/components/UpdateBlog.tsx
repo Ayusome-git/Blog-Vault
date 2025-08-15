@@ -21,30 +21,35 @@ import { useState } from "react"
 import { BACKEND_URL } from "../config"
 import { Loader2Icon } from "lucide-react"
 
-export function BlogInputUpdated() {
-    const [title,setTitle] = useState("");
-    const [content,setContent] = useState("");
-    const [loading,setLoading] = useState(false);
+interface blog{
+    id:string
+    title:string 
+    content: string
+}
 
-    async function postblog(){
+export function UpdateContent(props:blog) {
+    const [title,setTitle] = useState(props.title);
+    const [content,setContent] = useState(props.content);
+    const [loading,setLoading] = useState(false);
+    const[id,setId] =useState(props.id)
+
+    async function update(){
         if(title==="" || content===""){
             alert("invalid input")
             return;
         }
         try{
-        setLoading(true)
-        await axios.post(`${BACKEND_URL}/blog`, {
-            title,
-            content
-        },
-        {
-            headers: {
-                authorization: localStorage.getItem("token") || ""
-            }
-        }
-        );
-        alert("blog published")
-        setLoading(false)
+            setLoading(true);
+            await axios.put(`${BACKEND_URL}/blog`,{
+                id:id,
+                title:title,
+                content:content
+            },{
+                headers:{
+                    authorization:localStorage.getItem("token")
+                }
+            })
+            setLoading(false)
         }catch(e){
             setLoading(false)
         }
@@ -54,7 +59,7 @@ export function BlogInputUpdated() {
     return (
         <div className="grid grid-cols-5">
         <div className="col-start-2 col-span-3 gap-3">
-        <div className="text-5xl mb-5 text-center">Create Blog</div>
+        <div className="text-5xl mb-5 text-center">Update Blog</div>
         <Tabs defaultValue="account">
             <TabsList className="">
             <TabsTrigger value="account">Write</TabsTrigger>
@@ -65,11 +70,11 @@ export function BlogInputUpdated() {
                 <CardContent className="grid gap-6">
                 <div className="grid gap-3">
                     <Label className="text-3xl" htmlFor="tabs-demo-name">Title</Label>
-                    <Textarea className="border-none" onChange={(e)=>setTitle(e.target.value)}  placeholder="Enter Your Title Here." defaultValue={title} />
+                    <Textarea onChange={(e)=>setTitle(e.target.value)}  placeholder="Enter Your Title Here." value={title} />
                 </div>
                 <div className="grid gap-3">
                     <Label className="text-3xl" htmlFor="tabs-demo-username">Content</Label>
-                    <Textarea onChange={(e)=>setContent(e.target.value)}  placeholder="Write Your Story Here." defaultValue={content} />
+                    <Textarea onChange={(e)=>setContent(e.target.value)}  placeholder="Write Your Story Here." value={content} />
                 </div>
                 </CardContent>
                 
@@ -82,11 +87,11 @@ export function BlogInputUpdated() {
                 </CardHeader>
                 <CardContent className="grid gap-6">
                 <div className="gap-3 flex justify-center items-center ">
-                    <Input className="w-9/12 h-54 cursor-pointer" id="tabs-demo-current" type="file" />
+                    <Input className="w-72 h-54 cursor-pointer" id="tabs-demo-current" type="file" />
                 </div>
                 </CardContent>
                 <div className="flex items-center justify-center">
-                <Button onClick={postblog}>{loading ? (
+                <Button onClick={update}>{loading ? (
                       <>
                         <Loader2Icon className="animate-spin mr-2" />
                       </>

@@ -1,5 +1,4 @@
 import axios from "axios"
-import { useUserDetails, type UserDetails } from "../hooks/useUserDetails"
 import { Button } from "./ui/button"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
@@ -16,6 +15,7 @@ import {
 import { BACKEND_URL } from "../config"
 import { useState } from "react"
 import { Loader2Icon } from "lucide-react"
+
 
 interface editProps{
   name: string;
@@ -39,8 +39,8 @@ export function EditButton(props:editProps) {
         }
       })
       
-      setName(response.data)
       alert("username updated successfully")
+      setName(response.data)
       setLoading(false)
     }catch(e){
       setLoading(false)

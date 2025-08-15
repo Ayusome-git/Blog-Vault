@@ -7,6 +7,7 @@ import { Blogs } from './pages/Blogs'
 import { Blog } from './pages/Blog'
 import { CreateBlog } from './pages/CreateBlog'
 import { Profile } from './pages/Profile'
+import { UpdateBlog } from './pages/UpdateBlog'
 
 function App() {
 
@@ -14,12 +15,14 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <BrowserRouter>
         <Routes>
+          <Route path='/' element={<Login/>}/>
           <Route path='/signup' element={<SignUp/>}/>
           <Route path='/login' element={<Login/>}/>
           <Route path='/blogs' element={<Blogs/>}/>
           <Route path='/blog/:id' element={<Blog/>}/>
           <Route path='/createblog' element={<CreateBlog/>}/>
           <Route path='/me' element={<Profile/>}/>
+          <Route path='/updateBlog/:id' element={<UpdateBlog/>}/>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
