@@ -14,7 +14,8 @@ import {
 } from "./ui/sheet"
 import { BACKEND_URL } from "../config"
 import { useState } from "react"
-import { Loader2Icon } from "lucide-react"
+import { Loader2Icon, UserPen } from "lucide-react"
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip"
 
 
 interface editProps{
@@ -52,7 +53,12 @@ export function EditButton(props:editProps) {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="ghost">Edit Profile</Button>
+        <div className="flex items-center"><Tooltip>
+          <TooltipTrigger>
+            <UserPen className="size-6 cursor-pointer"/>
+          </TooltipTrigger>
+          <TooltipContent>Edit Details</TooltipContent>
+        </Tooltip></div>
       </SheetTrigger>
       <SheetContent>
         <SheetHeader>

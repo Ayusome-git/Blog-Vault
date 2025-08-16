@@ -1,4 +1,4 @@
-import { Edit } from "lucide-react"
+
 import { AppBar } from "../components/Appbar"
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar"
 import { EditButton } from "../components/EditDetails"
@@ -7,19 +7,13 @@ import { useEffect, useState } from "react"
 import { Myposts } from "../components/Myposts"
 import { FullBlogSkeleton } from "../components/skeletons/BlogSkeleton"
 
-import {CheckCircle2Icon} from "lucide-react"
-
-import {
-  Alert,
-  AlertTitle,
-} from "../components/ui/alert"
-
 export function Profile(){
     const {loading, blog, userDetail,refresh} = useUserDetails()
     const[open,setOpen] =useState(false);
+    const[deleteBlog,setDeleteBlog] =useState(false);
     useEffect(()=>{
         refresh();
-    },[open])
+    },[open,deleteBlog])
     
    if(loading){
     return(<div>
@@ -38,14 +32,14 @@ export function Profile(){
                 <AvatarImage src={""} />
                 <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
-                <div className="text-2xl ml-3">{userDetail?.name}</div>
+                <div className="text-2xl ml-3 mr-3">{userDetail?.name}</div>
                 <EditButton
                     onclick={() => { setOpen(!open) }}
                     email={userDetail?.email ?? ""}
                     name={userDetail?.name ?? ""}
                 />
                 </div>
-                <div>My Posts</div>
+                <div className="mt-5 text-xl">My Blogs</div>
                 <div>
                     {blog.map((b) => (
                         <Myposts
@@ -53,6 +47,7 @@ export function Profile(){
                         id={b.id}
                         title={b.title}
                         content={b.content.slice(0,100)+"......"}
+                        onclick={()=>setDeleteBlog(!deleteBlog)}
                         />
                     ))}
                 </div>

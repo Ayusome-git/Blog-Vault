@@ -61,14 +61,14 @@ export function BlogInputUpdated() {
             <TabsTrigger value="password">Upload</TabsTrigger>
             </TabsList>
             <TabsContent value="account">
-            <Card>
+            <Card className="bg-transparent border-none">
                 <CardContent className="grid gap-6">
                 <div className="grid gap-3">
-                    <Label className="text-3xl" htmlFor="tabs-demo-name">Title</Label>
-                    <Textarea className="border-none" onChange={(e)=>setTitle(e.target.value)}  placeholder="Enter Your Title Here." defaultValue={title} />
+                    <Label className="text-3xl" htmlFor="tabs-demo-name"></Label>
+                    <Textarea className="border-none text-2xl md:text-3xl" onChange={(e)=>setTitle(e.target.value)}  placeholder="Enter Your Title Here." defaultValue={title} />
                 </div>
                 <div className="grid gap-3">
-                    <Label className="text-3xl" htmlFor="tabs-demo-username">Content</Label>
+                    <Label className="text-3xl" htmlFor="tabs-demo-username"></Label>
                     <Textarea onChange={(e)=>setContent(e.target.value)}  placeholder="Write Your Story Here." defaultValue={content} />
                 </div>
                 </CardContent>

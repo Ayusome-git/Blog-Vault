@@ -105,6 +105,22 @@ app.get("/:id",middleware,async(req,res)=>{
     }
 })
 
-
+app.delete("/:id", middleware, async (req, res) => {
+    const id = req.params.id;
+    console.log("Delete request received for id:", req.params.id);
+    if (!id) {
+        return res.status(400).json({ message: "Blog id is required" });
+    }
+    try {
+        await client.blog.delete({
+            where: {
+                id:id
+            }
+        });
+        res.status(200).json({ message: "Blog deleted successfully" });
+    } catch (e) {
+        res.status(400).json({ message: "Failed to delete blog" });
+    }
+});
 
 export default app;
