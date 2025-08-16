@@ -7,7 +7,6 @@ interface SignupResponse {
 }
 
 export async function signup(name:string,email: string, password: string) {
-    const [success,setSuccess] = useState(false);
     try{
         const response = await axios.post<SignupResponse>(`${BACKEND_URL}/user/signup`, {
         name,
@@ -18,8 +17,7 @@ export async function signup(name:string,email: string, password: string) {
     if(status===200) alert("signup successfull")
     const token = response.data.token;
     localStorage.setItem("token",token);
-    setSuccess(true);
-    return success;
+    return true;
     }catch(e:any){
         const status = e.response.status;
         if(status==409) alert("username already exist");

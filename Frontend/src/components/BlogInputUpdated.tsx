@@ -61,7 +61,7 @@ export function BlogInputUpdated() {
             <TabsTrigger value="password">Upload</TabsTrigger>
             </TabsList>
             <TabsContent value="account">
-            <Card className="bg-transparent border-none">
+            <Card className="bg-transparent border-none shadow-none">
                 <CardContent className="grid gap-6">
                 <div className="grid gap-3">
                     <Label className="text-3xl" htmlFor="tabs-demo-name"></Label>
@@ -76,13 +76,13 @@ export function BlogInputUpdated() {
             </Card>
             </TabsContent>
             <TabsContent value="password">
-            <Card className="flex">
+            <Card className="flex bg-transparent border-none shadow-none">
                 <CardHeader>
                 <CardTitle className="text-center text-3xl">Upload Image</CardTitle>
                 </CardHeader>
                 <CardContent className="grid gap-6">
                 <div className="gap-3 flex justify-center items-center ">
-                    <Input className="w-9/12 h-54 cursor-pointer" id="tabs-demo-current" type="file" />
+                    <Input className="w-2/4 h-54 cursor-pointer" id="tabs-demo-current" type="file" />
                 </div>
                 </CardContent>
                 <div className="flex items-center justify-center">

@@ -89,29 +89,23 @@ export function LoginForm(props:formProps) {
                       "Login"
                     }
                   </Button>
-                ) : <Button
-                  onClick={async () => {
+                ) : <Button onClick={async () => {
                     setLoading(true);
                     try {
-                     const success= await signup(name,email, password);
-                     if(success){
-                      navigate("/blogs")
-                     }
+                      const success=await signup(name,email, password);
+                      if(success) navigate("/blogs")
                     } finally {
                       setLoading(false);
                     }
-                  }}
-                  className="w-full items-center"
-                  disabled={loading}
-                >
-                  {loading ? (
-                    <>
-                      <Loader2Icon className="animate-spin mr-2" />
-                    </>
-                  ) : 
-                    "Signup"
-                  }
-                </Button>}
+                  }} className="w-full">
+                    {loading ? (
+                      <>
+                        <Loader2Icon className="animate-spin mr-2" />
+                      </>
+                    ) : 
+                      "SignUp"
+                    }
+                  </Button>}
                 
               </div>
             </div>

@@ -66,7 +66,7 @@ export function UpdateContent(props:blog) {
             <TabsTrigger value="password">Upload</TabsTrigger>
             </TabsList>
             <TabsContent value="account">
-            <Card>
+            <Card className="bg-transparent border-none shadow-none">
                 <CardContent className="grid gap-6">
                 <div className="grid gap-3">
                     <Label className="text-3xl" htmlFor="tabs-demo-name">Title</Label>
@@ -81,7 +81,7 @@ export function UpdateContent(props:blog) {
             </Card>
             </TabsContent>
             <TabsContent value="password">
-            <Card className="flex">
+            <Card className="bg-transparent border-none shadow-none">
                 <CardHeader>
                 <CardTitle className="text-center text-3xl">Upload Image</CardTitle>
                 </CardHeader>

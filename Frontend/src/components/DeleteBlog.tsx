@@ -43,11 +43,12 @@ export function DeleteBlogButton(props: DeleteBlogButtonProps){
     return(
         <AlertDialog>
         <AlertDialogTrigger className="cursor-pointer"><Tooltip>
-                        <TooltipTrigger>
-                            <Trash className="size-5 cursor-pointer stroke-red-400"/>
-                        </TooltipTrigger>
-                        <TooltipContent>Delete Blog</TooltipContent>
-                        </Tooltip></AlertDialogTrigger>
+            <TooltipTrigger>
+            <Trash className="size-5 cursor-pointer stroke-red-400"/>
+            </TooltipTrigger>
+            <TooltipContent>Delete Blog</TooltipContent>
+            </Tooltip>
+        </AlertDialogTrigger>
         <AlertDialogContent>
             <AlertDialogHeader>
                 <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
