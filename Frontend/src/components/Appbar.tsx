@@ -21,7 +21,8 @@ export function AppBar({createBlogpage}:{createBlogpage?:string}){
         navigate("/login")
     }
 
-    return <div className="border-b flex justify-between px-5 py-2 items-center mb-4">
+    return <div className="flex items-center justify-center pt-4">
+        <div className="border rounded-full flex justify-between px-5 py-2 items-center mb-4 w-2/3">
         <div className="">
         <div onClick={()=>navigate("/blogs")} className="cursor-pointer">Blog Vault</div>
 
@@ -43,6 +44,7 @@ export function AppBar({createBlogpage}:{createBlogpage?:string}){
         <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
         </DropdownMenuContent>
         </DropdownMenu>
+    </div>
     </div>
     </div>
 }

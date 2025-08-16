@@ -60,7 +60,7 @@ export function UpdateContent(props:blog) {
         <div className="grid grid-cols-5">
         <div className="col-start-2 col-span-3 gap-3">
         <div className="text-5xl mb-5 text-center">Update Blog</div>
-        <Tabs defaultValue="account">
+        <Tabs defaultValue="account" className="items-center sm:items-stretch">
             <TabsList className="">
             <TabsTrigger value="account">Write</TabsTrigger>
             <TabsTrigger value="password">Upload</TabsTrigger>

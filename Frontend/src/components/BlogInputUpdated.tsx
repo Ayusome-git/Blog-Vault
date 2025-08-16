@@ -55,7 +55,7 @@ export function BlogInputUpdated() {
         <div className="grid grid-cols-5">
         <div className="col-start-2 col-span-3 gap-3">
         <div className="text-5xl mb-5 text-center">Create Blog</div>
-        <Tabs defaultValue="account">
+        <Tabs defaultValue="account" className="items-center sm:items-stretch">
             <TabsList className="">
             <TabsTrigger value="account">Write</TabsTrigger>
             <TabsTrigger value="password">Upload</TabsTrigger>
@@ -76,13 +76,13 @@ export function BlogInputUpdated() {
             </Card>
             </TabsContent>
             <TabsContent value="password">
-            <Card className="flex bg-transparent border-none shadow-none">
+            <Card className="flex bg-transparent border-none">
                 <CardHeader>
                 <CardTitle className="text-center text-3xl">Upload Image</CardTitle>
                 </CardHeader>
                 <CardContent className="grid gap-6">
                 <div className="gap-3 flex justify-center items-center ">
-                    <Input className="w-2/4 h-54 cursor-pointer" id="tabs-demo-current" type="file" />
+                    <Input className="w-72 h-54 cursor-pointer" id="tabs-demo-current" type="file" />
                 </div>
                 </CardContent>
                 <div className="flex items-center justify-center">
